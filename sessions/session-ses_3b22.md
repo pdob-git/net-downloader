@@ -1130,15 +1130,15 @@ _Thinking:_
 ```
 <file>
 00001| # AGENTS.md
-00002| 
+00002|
 00003| This file contains guidelines and commands for agentic coding agents working in this repository.
-00004| 
+00004|
 00005| ## Project Overview
-00006| 
+00006|
 00007| This is a Python project related to HTTP requests functionality. The project uses Python 3.12 with a virtual environment.
-00008| 
+00008|
 00009| ## Environment Setup
-00010| 
+00010|
 
 (File has more lines. Use 'offset' parameter to read beyond line 10)
 </file>
@@ -1171,13 +1171,13 @@ _Thinking:_
 00142| - Create custom exception classes for domain-specific errors
 00143| - Always include meaningful error messages
 00144| - Use context managers for resource management
-00145| 
+00145|
 00146| ```python
 00147| class RequestsOpencodeError(Exception):
 00148|     """Base exception for requests-opencode errors."""
 00149|     pass
-00150| 
-00151| 
+00150|
+00151|
 
 (End of file - total 151 lines)
 </file>
@@ -2326,23 +2326,23 @@ _Thinking:_
 ```
 <file>
 00001| """Web page reader client for reading URLs and saving to text files."""
-00002| 
+00002|
 00003| import os
 00004| from typing import Optional
 00005| from urllib.parse import urlparse
-00006| 
+00006|
 00007| import requests
 00008| from requests import Response
-00009| 
+00009|
 00010| from .exceptions import FileWriteError, NetworkError, WebPageReaderError
-00011| 
-00012| 
+00011|
+00012|
 00013| class WebPageReader:
 00014|     """A client for reading web pages and saving content to text files."""
-00015| 
+00015|
 00016|     def __init__(self, timeout: int = 30):
 00017|         """Initialize the web page reader.
-00018| 
+00018|
 00019|         Args:
 00020|             timeout: Request timeout in seconds.
 00021|         """
@@ -2353,37 +2353,37 @@ _Thinking:_
 00026|                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 00027|             }
 00028|         )
-00029| 
+00029|
 00030|     def read_page(self, url: str) -> str:
 00031|         """Read content from a web page.
-00032| 
+00032|
 00033|         Args:
 00034|             url: The URL to read from.
-00035| 
+00035|
 00036|         Returns:
 00037|             The page content as a string.
-00038| 
+00038|
 00039|         Raises:
 00040|             NetworkError: If the request fails.
 00041|             WebPageReaderError: If the URL is invalid.
 00042|         """
 00043|         if not self._is_valid_url(url):
 00044|             raise WebPageReaderError(f"Invalid URL: {url}")
-00045| 
+00045|
 00046|         try:
 00047|             response: Response = self.session.get(url, timeout=self.timeout)
 00048|             response.raise_for_status()
 00049|             return response.text
 00050|         except requests.RequestException as e:
 00051|             raise NetworkError(f"Failed to fetch {url}: {e}")
-00052| 
+00052|
 00053|     def save_to_file(self, content: str, filepath: str) -> None:
 00054|         """Save content to a text file.
-00055| 
+00055|
 00056|         Args:
 00057|             content: The content to save.
 00058|             filepath: The path to save the file to.
-00059| 
+00059|
 00060|         Raises:
 00061|             FileWriteError: If file write fails.
 00062|         """
@@ -2395,27 +2395,27 @@ _Thinking:_
 00068|                 f.write(content)
 00069|         except (OSError, IOError) as e:
 00070|             raise FileWriteError(f"Failed to write to {filepath}: {e}")
-00071| 
+00071|
 00072|     def read_and_save(self, url: str, filepath: str) -> None:
 00073|         """Read a web page and save it to a file.
-00074| 
+00074|
 00075|         Args:
 00076|             url: The URL to read from.
 00077|             filepath: The path to save the file to.
-00078| 
+00078|
 00079|         Raises:
 00080|             WebPageReaderError: If any operation fails.
 00081|         """
 00082|         content = self.read_page(url)
 00083|         self.save_to_file(content, filepath)
-00084| 
+00084|
 00085|     @staticmethod
 00086|     def _is_valid_url(url: str) -> bool:
 00087|         """Check if a URL is valid.
-00088| 
+00088|
 00089|         Args:
 00090|             url: The URL to validate.
-00091| 
+00091|
 00092|         Returns:
 00093|             True if valid, False otherwise.
 00094|         """
@@ -2427,19 +2427,19 @@ _Thinking:_
 00100|             )
 00101|         except Exception:
 00102|             return False
-00103| 
+00103|
 00104|     def close(self) -> None:
 00105|         """Close the session."""
 00106|         self.session.close()
-00107| 
+00107|
 00108|     def __enter__(self):
 00109|         """Context manager entry."""
 00110|         return self
-00111| 
+00111|
 00112|     def __exit__(self, exc_type, exc_val, exc_tb):
 00113|         """Context manager exit."""
 00114|         self.close()
-00115| 
+00115|
 
 (End of file - total 115 lines)
 </file>
@@ -2625,15 +2625,15 @@ _Thinking:_
 ```
 <file>
 00001| """Tests for utility functions."""
-00002| 
+00002|
 00003| import os
 00004| from unittest.mock import patch
-00005| 
+00005|
 00006| import pytest
-00007| 
+00007|
 00008| from requests_opencode.utils import generate_filename, load_config
-00009| 
-00010| 
+00009|
+00010|
 
 (File has more lines. Use 'offset' parameter to read beyond line 10)
 </file>
@@ -2782,22 +2782,22 @@ _Thinking:_
 ```
 <file>
 00001| """Web page reader client for reading URLs and saving to text files."""
-00002| 
+00002|
 00003| import os
 00004| from urllib.parse import urlparse
-00005| 
+00005|
 00006| import requests
 00007| from requests import Response
-00008| 
+00008|
 00009| from .exceptions import FileWriteError, NetworkError, WebPageReaderError
-00010| 
-00011| 
+00010|
+00011|
 00012| class WebPageReader:
 00013|     """A client for reading web pages and saving content to text files."""
-00014| 
+00014|
 00015|     def __init__(self, timeout: int = 30):
 00016|         """Initialize the web page reader.
-00017| 
+00017|
 00018|         Args:
 00019|             timeout: Request timeout in seconds.
 00020|         """
@@ -2805,10 +2805,10 @@ _Thinking:_
 00022|         self.session = requests.Session()
 00023|  user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 00024|         self.session.headers.update({"User-Agent": user_agent})
-00025| 
+00025|
 00026|     def read_page(self, url: str) -> str:
 00027|         """Read content from a web page.
-00028| 
+00028|
 00029|         Args:
 00030|             url: The URL to read from.
 
@@ -3099,7 +3099,7 @@ _Thinking:_
 
 
 
-Created Python functionality to read web pages and save to text files with configurable URLs. 
+Created Python functionality to read web pages and save to text files with configurable URLs.
 
 **Key Features:**
 - `WebPageReader` class with `read_page()`, `save_to_file()`, and `read_and_save()` methods
@@ -3113,7 +3113,7 @@ Created Python functionality to read web pages and save to text files with confi
 # Default URL (https://example.com)
 python main.py
 
-# Custom URL  
+# Custom URL
 python main.py https://httpbin.org/html
 
 # Custom output file
@@ -3131,4 +3131,3 @@ with WebPageReader() as reader:
 The URL can be easily changed via command line argument, environment variables, or programmatically.
 
 ---
-

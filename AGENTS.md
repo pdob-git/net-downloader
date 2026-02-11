@@ -147,4 +147,3 @@ def make_request(
 class RequestsOpencodeError(Exception):
     """Base exception for requests-opencode errors."""
     pass
-

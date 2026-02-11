@@ -734,7 +734,7 @@ _Thinking:_
 00001| [build-system]
 00002| requires = ["setuptools>=61.0", "wheel"]
 00003| build-backend = "setuptools.build_meta"
-00004| 
+00004|
 00005| [project]
 00006| name = "requests-opencode"
 00007| version = "0.1.0"
@@ -757,7 +757,7 @@ _Thinking:_
 00024| dependencies = [
 00025|     "requests>=2.31.0",
 00026| ]
-00027| 
+00027|
 00028| [project.optional-dependencies]
 00029| dev = [
 00030|     "pytest>=7.0.0",
@@ -768,33 +768,33 @@ _Thinking:_
 00035|     "mypy>=1.0.0",
 00036|     "bandit>=1.7.0",
 00037| ]
-00038| 
+00038|
 00039| [project.scripts]
 00040| webpage-reader = "main:main"
-00041| 
+00041|
 00042| [project.urls]
 00043| Homepage = "https://github.com/example/requests-opencode"
 00044| Repository = "https://github.com/example/requests-opencode"
 00045| Issues = "https://github.com/example/requests-opencode/issues"
-00046| 
+00046|
 00047| [tool.setuptools.packages.find]
 00048| where = ["."]
 00049| include = ["requests_opencode*"]
-00050| 
+00050|
 00051| [tool.black]
 00052| line-length = 88
 00053| target-version = ['py38']
-00054| 
+00054|
 00055| [tool.isort]
 00056| profile = "black"
 00057| multi_line_output = 3
-00058| 
+00058|
 00059| [tool.mypy]
 00060| python_version = "3.8"
 00061| warn_return_any = true
 00062| warn_unused_configs = true
 00063| disallow_untyped_defs = true
-00064| 
+00064|
 00065| [tool.pytest.ini_options]
 00066| testpaths = ["tests"]
 00067| python_files = ["test_*.py"]
@@ -1019,60 +1019,60 @@ _Thinking:_
 ```
 <file>
 00001| # requests-opencode
-00002| 
+00002|
 00003| A Python package for reading web pages and saving their content to text files.
-00004| 
+00004|
 00005| ## Features
-00006| 
+00006|
 00007| - Read content from any web page
 00008| - Save content to text files with customizable filenames
 00009| - Configurable URLs via command line or environment variables
 00010| - Proper error handling for network and file operations
 00011| - Context manager support for resource cleanup
-00012| 
+00012|
 00013| ## Installation
-00014| 
+00014|
 00015| ```bash
 00016| pip install -e .
 00017| ```
-00018| 
+00018|
 00019| For development:
 00020| ```bash
 00021| pip install -e ".[dev]"
 00022| ```
-00023| 
+00023|
 00024| ## Usage
-00025| 
+00025|
 00026| ### Command Line
-00027| 
+00027|
 00028| ```bash
 00029| # Read default page (https://example.com)
 00030| python main.py
-00031| 
+00031|
 00032| # Read specific URL
 00033| python main.py https://httpbin.org/html
-00034| 
+00034|
 00035| # Save to custom file
 00036| python main.py https://example.com -o my_page.txt
-00037| 
+00037|
 00038| # Save to custom directory
 00039| python main.py https://example.com -d custom_output
 00040| ```
-00041| 
+00041|
 00042| ### Python API
-00043| 
+00043|
 00044| ```python
 00045| from requests_opencode import WebPageReader
-00046| 
+00046|
 00047| # Basic usage
 00048| with WebPageReader() as reader:
 00049|     content = reader.read_page("https://example.com")
 00050|     reader.save_to_file(content, "example.txt")
-00051| 
+00051|
 00052| # Read and save in one step
 00053| with WebPageReader(timeout=60) as reader:
 00054|     reader.read_and_save("https://example.com", "output/example.txt")
-00055| 
+00055|
 00056| # Custom timeout
 00057| reader = WebPageReader(timeout=45)
 00058| try:
@@ -1081,49 +1081,49 @@ _Thinking:_
 00061| finally:
 00062|     reader.close()
 00063| ```
-00064| 
+00064|
 00065| ### Environment Variables
-00066| 
+00066|
 00067| ```bash
 00068| export DEFAULT_URL="https://example.com"
 00069| export DEFAULT_OUTPUT_DIR="output"
 00070| export REQUEST_TIMEOUT="30"
 00071| ```
-00072| 
+00072|
 00073| ## Configuration
-00074| 
+00074|
 00075| The following environment variables can be used to configure default behavior:
-00076| 
+00076|
 00077| - `DEFAULT_URL`: Default URL to read (default: https://example.com)
 00078| - `DEFAULT_OUTPUT_DIR`: Default output directory (default: output)
 00079| - `REQUEST_TIMEOUT`: Request timeout in seconds (default: 30)
-00080| 
+00080|
 00081| ## Development
-00082| 
+00082|
 00083| ```bash
 00084| # Install dependencies
 00085| pip install -r requirements.txt
 00086| pip install -r requirements-dev.txt
-00087| 
+00087|
 00088| # Run tests
 00089| pytest
-00090| 
+00090|
 00091| # Run tests with coverage
 00092| pytest --cov=requests_opencode
-00093| 
+00093|
 00094| # Format code
 00095| black .
 00096| isort .
-00097| 
+00097|
 00098| # Lint
 00099| flake8 requests_opencode tests
-00100| 
+00100|
 00101| # Type check
 00102| mypy requests_opencode
 00103| ```
-00104| 
+00104|
 00105| ## License
-00106| 
+00106|
 00107| MIT License
 
 (End of file - total 107 lines)
@@ -1465,13 +1465,13 @@ _Thinking:_
 ```
 <file>
 00001| """requests_opencode - Web page reader and text file writer."""
-00002| 
+00002|
 00003| from .client import WebPageReader
 00004| from .exceptions import WebPageReaderError
-00005| 
+00005|
 00006| __version__ = "0.1.0"
 00007| __all__ = ["WebPageReader", "WebPageReaderError"]
-00008| 
+00008|
 
 (End of file - total 8 lines)
 </file>
@@ -1490,15 +1490,15 @@ _Thinking:_
 ```
 <file>
 00001| """Main application for reading web pages."""
-00002| 
+00002|
 00003| import argparse
 00004| import sys
 00005| from pathlib import Path
-00006| 
+00006|
 00007| from requests_opencode import WebPageReader, WebPageReaderError
 00008| from requests_opencode.utils import generate_filename, load_config
-00009| 
-00010| 
+00009|
+00010|
 00011| def main() -> None:
 00012|     """Main entry point for the application."""
 00013|     parser = argparse.ArgumentParser(
@@ -1516,22 +1516,22 @@ _Thinking:_
 00025|         action="store_true",
 00026|         help="Download sample PDF from user2019.r-project.org",
 00027|     )
-00028| 
+00028|
 00029|     args = parser.parse_args()
-00030| 
+00030|
 00031|     # Handle sample PDF download
 00032|     if args.sample_pdf:
 00033|         get_sample_pdf(args.output or "sample.pdf")
 00034|         return
-00035| 
+00035|
 00036|     # Load configuration
 00037|     config = load_config()
-00038| 
+00038|
 00039|     # Set defaults from config and args
 00040|     url = args.url or config["default_url"]
 00041|     timeout = args.timeout or config["timeout"]
 00042|     output_dir = Path(args.dir or config["default_output_dir"])
-00043| 
+00043|
 00044|     # Generate output filename if not provided
 00045|     if args.output:
 00046|         output_file = Path(args.output)
@@ -1540,10 +1540,10 @@ _Thinking:_
 00049|         if args.pdf:
 00050|             filename = filename.replace(".txt", ".pdf")
 00051|         output_file = output_dir / filename
-00052| 
+00052|
 00053|     print(f"Reading page: {url}")
 00054|     print(f"Output file: {output_file}")
-00055| 
+00055|
 00056|     try:
 00057|         with WebPageReader(timeout=timeout) as reader:
 00058|             if args.pdf:
@@ -1554,30 +1554,30 @@ _Thinking:_
 00063|     except WebPageReaderError as e:
 00064|         print(f"✗ Error: {e}", file=sys.stderr)
 00065|         sys.exit(1)
-00066| 
-00067| 
+00066|
+00067|
 00068| def get_sample_pdf(output_path: str = "sample.pdf") -> None:
 00069|     """Download the sample PDF from user2019.r-project.org.
-00070| 
+00070|
 00071|     Args:
 00072|         output_path: Path where to save the PDF file.
 00073|     """
 00074|     sample_url = "https://user2019.r-project.org/static/pres/t255812.pdf"
-00075| 
+00075|
 00076|     print(f"Downloading sample PDF from: {sample_url}")
 00077|     print(f"Saving to: {output_path}")
-00078| 
+00078|
 00079|     try:
 00080|         with WebPageReader() as reader:
 00081|             reader.download_pdf(sample_url, output_path)
 00082|         print("✓ Sample PDF successfully downloaded!")
 00083|     except WebPageReaderError as e:
 00084|         print(f"✗ Error: {e}", file=sys.stderr)
-00085| 
-00086| 
+00085|
+00086|
 00087| if __name__ == "__main__":
 00088|     main()
-00089| 
+00089|
 
 (End of file - total 89 lines)
 </file>
@@ -1596,20 +1596,20 @@ _Thinking:_
 ```
 <file>
 00001| """Tests for PDF download functionality."""
-00002| 
+00002|
 00003| import os
 00004| import tempfile
 00005| from unittest.mock import Mock, patch
-00006| 
+00006|
 00007| import pytest
 00008| import requests
-00009| 
+00009|
 00010| from requests_opencode import WebPageReader, WebPageReaderError
-00011| 
-00012| 
+00011|
+00012|
 00013| class TestPDFDownload:
 00014|     """Test PDF download functionality."""
-00015| 
+00015|
 00016|     def test_download_pdf_success(self):
 00017|         """Test successful PDF download."""
 00018|         # Mock response with PDF content
@@ -1617,61 +1617,61 @@ _Thinking:_
 00020|         mock_response.raise_for_status.return_value = None
 00021|         mock_response.headers = {"content-type": "application/pdf"}
 00022|         mock_response.iter_content.return_value = [b"pdf content chunk 1", b"pdf content chunk 2"]
-00023|         
+00023|
 00024|         with tempfile.TemporaryDirectory() as temp_dir:
 00025|             pdf_path = os.path.join(temp_dir, "test.pdf")
-00026|             
+00026|
 00027|             with patch("requests.Session.get", return_value=mock_response):
 00028|                 reader = WebPageReader()
 00029|                 reader.download_pdf("https://example.com/test.pdf", pdf_path)
-00030|                 
+00030|
 00031|             # Verify file was created and has content
 00032|             assert os.path.exists(pdf_path)
 00033|             with open(pdf_path, "rb") as f:
 00034|                 content = f.read()
 00035|                 assert content == b"pdf content chunk 1pdf content chunk 2"
-00036| 
+00036|
 00037|     def test_download_pdf_invalid_url(self):
 00038|         """Test PDF download with invalid URL."""
 00039|         reader = WebPageReader()
-00040|         
+00040|
 00041|         with pytest.raises(WebPageReaderError, match="Invalid URL"):
 00042|             reader.download_pdf("invalid-url", "test.pdf")
-00043| 
+00043|
 00044|     def test_download_pdf_non_pdf_content(self):
 00045|         """Test PDF download when content is not actually a PDF."""
 00046|         mock_response = Mock(spec=requests.Response)
 00047|         mock_response.raise_for_status.return_value = None
 00048|         mock_response.headers = {"content-type": "text/html"}
-00049|         
+00049|
 00050|         with patch("requests.Session.get", return_value=mock_response):
 00051|             reader = WebPageReader()
-00052|             
+00052|
 00053|             with pytest.raises(WebPageReaderError, match="does not appear to be a PDF"):
 00054|                 reader.download_pdf("https://example.com/not-pdf", "test.pdf")
-00055| 
+00055|
 00056|     def test_download_pdf_network_error(self):
 00057|         """Test PDF download with network error."""
 00058|         with patch("requests.Session.get", side_effect=requests.RequestException("Network error")):
 00059|             reader = WebPageReader()
-00060|             
+00060|
 00061|             with pytest.raises(WebPageReaderError, match="Failed to download PDF"):
 00062|                 reader.download_pdf("https://example.com/test.pdf", "test.pdf")
-00063| 
+00063|
 00064|     def test_download_pdf_with_extension_check(self):
 00065|         """Test PDF download works when URL ends with .pdf but content-type is missing."""
 00066|         mock_response = Mock(spec=requests.Response)
 00067|         mock_response.raise_for_status.return_value = None
 00068|         mock_response.headers = {}  # No content-type header
 00069|         mock_response.iter_content.return_value = [b"pdf content"]
-00070|         
+00070|
 00071|         with tempfile.TemporaryDirectory() as temp_dir:
 00072|             pdf_path = os.path.join(temp_dir, "test.pdf")
-00073|             
+00073|
 00074|             with patch("requests.Session.get", return_value=mock_response):
 00075|                 reader = WebPageReader()
 00076|                 reader.download_pdf("https://example.com/test.pdf", pdf_path)
-00077|                 
+00077|
 00078|             assert os.path.exists(pdf_path)
 
 (End of file - total 78 lines)
@@ -1786,34 +1786,34 @@ Edit applied successfully.
 ```
 <file>
 00001| """Tests for the WebPageReader client."""
-00002| 
+00002|
 00003| from unittest.mock import Mock, mock_open, patch
-00004| 
+00004|
 00005| import pytest
 00006| from requests import Response
-00007| 
+00007|
 00008| from requests_opencode import WebPageReader, WebPageReaderError
 00009| from requests_opencode.exceptions import FileWriteError, NetworkError
-00010| 
-00011| 
+00010|
+00011|
 00012| class TestWebPageReader:
 00013|     """Test cases for WebPageReader class."""
-00014| 
+00014|
 00015|     def setup_method(self):
 00016|         """Set up test fixtures."""
 00017|         self.reader = WebPageReader(timeout=10)
-00018| 
+00018|
 00019|     def test_init_default_timeout(self):
 00020|         """Test initialization with default timeout."""
 00021|         reader = WebPageReader()
 00022|         assert reader.timeout == 30
 00023|         assert reader.session is not None
-00024| 
+00024|
 00025|     def test_init_custom_timeout(self):
 00026|         """Test initialization with custom timeout."""
 00027|         reader = WebPageReader(timeout=60)
 00028|         assert reader.timeout == 60
-00029| 
+00029|
 00030|     def test_is_valid_url_valid_urls(self):
 00031|         """Test URL validation with valid URLs."""
 00032|         valid_urls = [
@@ -1824,7 +1824,7 @@ Edit applied successfully.
 00037|         ]
 00038|         for url in valid_urls:
 00039|             assert WebPageReader._is_valid_url(url) is True
-00040| 
+00040|
 00041|     def test_is_valid_url_invalid_urls(self):
 00042|         """Test URL validation with invalid URLs."""
 00043|         invalid_urls = [
@@ -1836,7 +1836,7 @@ Edit applied successfully.
 00049|         ]
 00050|         for url in invalid_urls:
 00051|             assert WebPageReader._is_valid_url(url) is False
-00052| 
+00052|
 00053|     @patch("requests.Session.get")
 00054|     def test_read_page_success(self, mock_get):
 00055|         """Test successful page reading."""
@@ -1844,80 +1844,80 @@ Edit applied successfully.
 00057|         mock_response.text = "<html><body>Test content</body></html>"
 00058|         mock_response.raise_for_status.return_value = None
 00059|         mock_get.return_value = mock_response
-00060| 
+00060|
 00061|         content = self.reader.read_page("https://example.com")
-00062| 
+00062|
 00063|         assert content == "<html><body>Test content</body></html>"
 00064|         mock_get.assert_called_once_with("https://example.com", timeout=10)
-00065| 
+00065|
 00066|     @patch("requests.Session.get")
 00067|     def test_read_page_network_error(self, mock_get):
 00068|         """Test network error handling."""
 00069|         import requests
-00070| 
+00070|
 00071|         mock_get.side_effect = requests.RequestException("Network error")
-00072| 
+00072|
 00073|         with pytest.raises(NetworkError):
 00074|             self.reader.read_page("https://example.com")
-00075| 
+00075|
 00076|     def test_read_page_invalid_url(self):
 00077|         """Test invalid URL handling."""
 00078|         with pytest.raises(WebPageReaderError):
 00079|             self.reader.read_page("invalid-url")
-00080| 
+00080|
 00081|     @patch("builtins.open", new_callable=mock_open)
 00082|     @patch("os.makedirs")
 00083|     def test_save_to_file_success(self, mock_makedirs, mock_file):
 00084|         """Test successful file saving."""
 00085|         content = "Test content"
 00086|         filepath = "output/test.txt"
-00087| 
+00087|
 00088|         self.reader.save_to_file(content, filepath)
-00089| 
+00089|
 00090|         mock_makedirs.assert_called_once_with("output", exist_ok=True)
 00091|         mock_file.assert_called_once_with(filepath, "w", encoding="utf-8")
 00092|         mock_file().write.assert_called_once_with(content)
-00093| 
+00093|
 00094|     @patch("os.makedirs")
 00095|     def test_save_to_file_directory_error(self, mock_makedirs):
 00096|         """Test file saving with directory creation error."""
 00097|         mock_makedirs.side_effect = OSError("Permission denied")
-00098| 
+00098|
 00099|         with pytest.raises(FileWriteError):
 00100|             self.reader.save_to_file("content", "/invalid/path/file.txt")
-00101| 
+00101|
 00102|     @patch("builtins.open", new_callable=mock_open)
 00103|     def test_save_to_file_write_error(self, mock_file):
 00104|         """Test file saving with write error."""
 00105|         mock_file.side_effect = IOError("Disk full")
-00106| 
+00106|
 00107|         with pytest.raises(FileWriteError):
 00108|             self.reader.save_to_file("content", "output/test.txt")
-00109| 
+00109|
 00110|     @patch.object(WebPageReader, "save_to_file")
 00111|     @patch.object(WebPageReader, "read_page")
 00112|     def test_read_and_save_success(self, mock_read, mock_save):
 00113|         """Test successful read and save operation."""
 00114|         mock_read.return_value = "Page content"
-00115| 
+00115|
 00116|         self.reader.read_and_save("https://example.com", "output/test.txt")
-00117| 
+00117|
 00118|         mock_read.assert_called_once_with("https://example.com")
 00119|         mock_save.assert_called_once_with("Page content", "output/test.txt")
-00120| 
+00120|
 00121|     def test_context_manager(self):
 00122|         """Test context manager functionality."""
 00123|         with patch.object(self.reader.session, "close") as mock_close:
 00124|             with self.reader as reader:
 00125|                 assert reader is self.reader
 00126|             mock_close.assert_called_once()
-00127| 
+00127|
 00128|     def test_close(self):
 00129|         """Test session closing."""
 00130|         with patch.object(self.reader.session, "close") as mock_close:
 00131|             self.reader.close()
 00132|             mock_close.assert_called_once()
-00133| 
+00133|
 
 (End of file - total 133 lines)
 </file>
@@ -1936,16 +1936,16 @@ Edit applied successfully.
 ```
 <file>
 00001| """Tests for utility functions."""
-00002| 
+00002|
 00003| import os
 00004| from unittest.mock import patch
-00005| 
+00005|
 00006| from requests_opencode.utils import generate_filename, load_config
-00007| 
-00008| 
+00007|
+00008|
 00009| class TestUtils:
 00010|     """Test cases for utility functions."""
-00011| 
+00011|
 00012|     @patch.dict(
 00013|         os.environ,
 00014|         {
@@ -1957,50 +1957,50 @@ Edit applied successfully.
 00020|     def test_load_config_with_env_vars(self):
 00021|         """Test loading configuration from environment variables."""
 00022|         config = load_config()
-00023| 
+00023|
 00024|         assert config["default_url"] == "https://custom.com"
 00025|         assert config["default_output_dir"] == "custom_output"
 00026|         assert config["timeout"] == 45
-00027| 
+00027|
 00028|     @patch.dict(os.environ, {}, clear=True)
 00029|     def test_load_config_defaults(self):
 00030|         """Test loading configuration with defaults."""
 00031|         config = load_config()
-00032| 
+00032|
 00033|         assert config["default_url"] == "https://example.com"
 00034|         assert config["default_output_dir"] == "output"
 00035|         assert config["timeout"] == 30
-00036| 
+00036|
 00037|     def test_generate_filename_simple_url(self):
 00038|         """Test filename generation for simple URL."""
 00039|         filename = generate_filename("https://example.com")
 00040|         assert filename == "example.com_index.txt"
-00041| 
+00041|
 00042|     def test_generate_filename_with_www(self):
 00043|         """Test filename generation removing www."""
 00044|         filename = generate_filename("https://www.example.com")
 00045|         assert filename == "example.com_index.txt"
-00046| 
+00046|
 00047|     def test_generate_filename_with_path(self):
 00048|         """Test filename generation with path."""
 00049|         filename = generate_filename("https://example.com/path/to/page")
 00050|         assert filename == "example.com_path_to_page.txt"
-00051| 
+00051|
 00052|     def test_generate_filename_custom_extension(self):
 00053|         """Test filename generation with custom extension."""
 00054|         filename = generate_filename("https://example.com", "html")
 00055|         assert filename == "example.com_index.html"
-00056| 
+00056|
 00057|     def test_generate_filename_trailing_slash(self):
 00058|         """Test filename generation with trailing slash."""
 00059|         filename = generate_filename("https://example.com/")
 00060|         assert filename == "example.com_index.txt"
-00061| 
+00061|
 00062|     def test_generate_filename_empty_path(self):
 00063|         """Test filename generation with empty path."""
 00064|         filename = generate_filename("https://example.com/test/")
 00065|         assert filename == "example.com_test.txt"
-00066| 
+00066|
 
 (End of file - total 66 lines)
 </file>
@@ -2074,15 +2074,15 @@ Edit applied successfully.
 ```
 <file>
 00001| """Web page reader client for reading URLs and saving to text files."""
-00002| 
+00002|
 00003| import os
 00004| from urllib.parse import urlparse
-00005| 
+00005|
 00006| import requests
 00007| from requests import Response
-00008| 
+00008|
 00009| from .exceptions import FileWriteError, NetworkError, WebPageReaderError
-00010| 
+00010|
 
 (File has more lines. Use 'offset' parameter to read beyond line 10)
 </file>
@@ -2107,25 +2107,25 @@ Edit applied successfully.
 ```
 <file>
 00001| """Custom exceptions for requests_opencode."""
-00002| 
-00003| 
+00002|
+00003|
 00004| class WebPageReaderError(Exception):
 00005|     """Base exception for web page reader errors."""
-00006| 
+00006|
 00007|     pass
-00008| 
-00009| 
+00008|
+00009|
 00010| class NetworkError(WebPageReaderError):
 00011|     """Raised when network request fails."""
-00012| 
+00012|
 00013|     pass
-00014| 
-00015| 
+00014|
+00015|
 00016| class FileWriteError(WebPageReaderError):
 00017|     """Raised when file write operation fails."""
-00018| 
+00018|
 00019|     pass
-00020| 
+00020|
 
 (End of file - total 20 lines)
 </file>
@@ -2181,10 +2181,10 @@ _Thinking:_
 ```
 <file>
 00001| """Utility functions for requests_opencode."""
-00002| 
+00002|
 00003| import os
 00004| from typing import Any, Dict
-00005| 
+00005|
 
 (File has more lines. Use 'offset' parameter to read beyond line 5)
 </file>
@@ -2236,10 +2236,10 @@ _Thinking:_
 ```
 <file>
 00001| """Web page reader client for reading URLs and saving to text files."""
-00002| 
+00002|
 00003| import os
 00004| from urllib.parse import urlparse
-00005| 
+00005|
 
 (File has more lines. Use 'offset' parameter to read beyond line 5)
 </file>
@@ -2291,54 +2291,54 @@ Edit applied successfully.
 ```
 <file>
 00001| # AGENTS.md
-00002| 
+00002|
 00003| This file contains guidelines and commands for agentic coding agents working in this repository.
-00004| 
+00004|
 00005| ## Project Overview
-00006| 
+00006|
 00007| This is a Python project related to HTTP requests functionality. The project uses Python 3.12 with a virtual environment.
-00008| 
+00008|
 00009| ## Environment Setup
-00010| 
+00010|
 00011| ```bash
 00012| # Activate virtual environment
 00013| source .venv/bin/activate  # Linux/Mac
 00014| # or
 00015| .venv\Scripts\activate     # Windows
-00016| 
+00016|
 00017| # Install dependencies
 00018| pip install -r requirements.txt
 00019| pip install -r requirements-dev.txt
 00020| ```
-00021| 
+00021|
 00022| ## Build and Development Commands
-00023| 
+00023|
 00024| ### Core Commands
 00025| ```bash
 00026| # Install the package in development mode
 00027| pip install -e .
-00028| 
+00028|
 00029| # Run the main application
 00030| python main.py
-00031| 
+00031|
 00032| # Run with specific module
 00033| python -m requests_opencode
 00034| ```
-00035| 
+00035|
 00036| ### Testing Commands
 00037| ```bash
 00038| # Run all tests
 00039| pytest
-00040| 
+00040|
 00041| # Run tests with coverage
 00042| pytest --cov= requests_opencode
-00043| 
+00043|
 00044| # Run specific test file
 00045| pytest tests/test_specific.py
-00046| 
+00046|
 00047| # Run specific test function
 00048| pytest tests/test_specific.py::test_function_name
-00049| 
+00049|
 00050| # Run tests with verbose output
 
 (File has more lines. Use 'offset' parameter to read beyond line 50)
@@ -2804,4 +2804,3 @@ Successfully changed project name from "requests-opencode" to "net_downloader" e
 The project is now fully renamed to "net_downloader" and all references have been updated.
 
 ---
-

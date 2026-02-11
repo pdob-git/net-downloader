@@ -21,8 +21,7 @@ class WebPageReader:
         self.timeout = timeout
         self.session = requests.Session()
         user_agent = (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36"
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         )
         self.session.headers.update({"User-Agent": user_agent})
 
@@ -150,6 +149,8 @@ class WebPageReader:
         """Context manager entry."""
         return self
 
-    def __exit__(self, exc_type: object, exc_val: object, exc_tb: object) -> None:
+    def __exit__(
+        self, exc_type: object, exc_val: object, exc_tb: object
+    ) -> None:
         """Context manager exit."""
         self.close()

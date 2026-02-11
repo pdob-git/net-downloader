@@ -197,13 +197,13 @@ I'll add functionality to download a sample PDF from the specified URL. Let me s
 ```
 <file>
 00001| """requests_opencode - Web page reader and text file writer."""
-00002| 
+00002|
 00003| from .client import WebPageReader
 00004| from .exceptions import WebPageReaderError
-00005| 
+00005|
 00006| __version__ = "0.1.0"
 00007| __all__ = ["WebPageReader", "WebPageReaderError"]
-00008| 
+00008|
 
 (End of file - total 8 lines)
 </file>
@@ -222,22 +222,22 @@ I'll add functionality to download a sample PDF from the specified URL. Let me s
 ```
 <file>
 00001| """Web page reader client for reading URLs and saving to text files."""
-00002| 
+00002|
 00003| import os
 00004| from urllib.parse import urlparse
-00005| 
+00005|
 00006| import requests
 00007| from requests import Response
-00008| 
+00008|
 00009| from .exceptions import FileWriteError, NetworkError, WebPageReaderError
-00010| 
-00011| 
+00010|
+00011|
 00012| class WebPageReader:
 00013|     """A client for reading web pages and saving content to text files."""
-00014| 
+00014|
 00015|     def __init__(self, timeout: int = 30):
 00016|         """Initialize the web page reader.
-00017| 
+00017|
 00018|         Args:
 00019|             timeout: Request timeout in seconds.
 00020|         """
@@ -247,37 +247,37 @@ I'll add functionality to download a sample PDF from the specified URL. Let me s
 00024|             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 00025|         )
 00026|         self.session.headers.update({"User-Agent": user_agent})
-00027| 
+00027|
 00028|     def read_page(self, url: str) -> str:
 00029|         """Read content from a web page.
-00030| 
+00030|
 00031|         Args:
 00032|             url: The URL to read from.
-00033| 
+00033|
 00034|         Returns:
 00035|             The page content as a string.
-00036| 
+00036|
 00037|         Raises:
 00038|             NetworkError: If the request fails.
 00039|             WebPageReaderError: If the URL is invalid.
 00040|         """
 00041|         if not self._is_valid_url(url):
 00042|             raise WebPageReaderError(f"Invalid URL: {url}")
-00043| 
+00043|
 00044|         try:
 00045|             response: Response = self.session.get(url, timeout=self.timeout)
 00046|             response.raise_for_status()
 00047|             return response.text
 00048|         except requests.RequestException as e:
 00049|             raise NetworkError(f"Failed to fetch {url}: {e}")
-00050| 
+00050|
 00051|     def save_to_file(self, content: str, filepath: str) -> None:
 00052|         """Save content to a text file.
-00053| 
+00053|
 00054|         Args:
 00055|             content: The content to save.
 00056|             filepath: The path to save the file to.
-00057| 
+00057|
 00058|         Raises:
 00059|             FileWriteError: If file write fails.
 00060|         """
@@ -289,27 +289,27 @@ I'll add functionality to download a sample PDF from the specified URL. Let me s
 00066|                 f.write(content)
 00067|         except (OSError, IOError) as e:
 00068|             raise FileWriteError(f"Failed to write to {filepath}: {e}")
-00069| 
+00069|
 00070|     def read_and_save(self, url: str, filepath: str) -> None:
 00071|         """Read a web page and save it to a file.
-00072| 
+00072|
 00073|         Args:
 00074|             url: The URL to read from.
 00075|             filepath: The path to save the file to.
-00076| 
+00076|
 00077|         Raises:
 00078|             WebPageReaderError: If any operation fails.
 00079|         """
 00080|         content = self.read_page(url)
 00081|         self.save_to_file(content, filepath)
-00082| 
+00082|
 00083|     @staticmethod
 00084|     def _is_valid_url(url: str) -> bool:
 00085|         """Check if a URL is valid.
-00086| 
+00086|
 00087|         Args:
 00088|             url: The URL to validate.
-00089| 
+00089|
 00090|         Returns:
 00091|             True if valid, False otherwise.
 00092|         """
@@ -320,19 +320,19 @@ I'll add functionality to download a sample PDF from the specified URL. Let me s
 00097|             )
 00098|         except Exception:
 00099|             return False
-00100| 
+00100|
 00101|     def close(self) -> None:
 00102|         """Close the session."""
 00103|         self.session.close()
-00104| 
+00104|
 00105|     def __enter__(self):
 00106|         """Context manager entry."""
 00107|         return self
-00108| 
+00108|
 00109|     def __exit__(self, exc_type, exc_val, exc_tb):
 00110|         """Context manager exit."""
 00111|         self.close()
-00112| 
+00112|
 
 (End of file - total 112 lines)
 </file>
@@ -415,15 +415,15 @@ Now I'll create a simple function to get the sample PDF and add it to the main m
 ```
 <file>
 00001| """Main application for reading web pages."""
-00002| 
+00002|
 00003| import argparse
 00004| import sys
 00005| from pathlib import Path
-00006| 
+00006|
 00007| from requests_opencode import WebPageReader, WebPageReaderError
 00008| from requests_opencode.utils import generate_filename, load_config
-00009| 
-00010| 
+00009|
+00010|
 00011| def main() -> None:
 00012|     """Main entry point for the application."""
 00013|     parser = argparse.ArgumentParser(
@@ -435,27 +435,27 @@ Now I'll create a simple function to get the sample PDF and add it to the main m
 00019|     parser.add_argument("-o", "--output", help="Output file path")
 00020|     parser.add_argument("-d", "--dir", help="Output directory (default: output)")
 00021|     parser.add_argument("-t", "--timeout", type=int, help="Request timeout in seconds")
-00022| 
+00022|
 00023|     args = parser.parse_args()
-00024| 
+00024|
 00025|     # Load configuration
 00026|     config = load_config()
-00027| 
+00027|
 00028|     # Set defaults from config and args
 00029|     url = args.url or config["default_url"]
 00030|     timeout = args.timeout or config["timeout"]
 00031|     output_dir = Path(args.dir or config["default_output_dir"])
-00032| 
+00032|
 00033|     # Generate output filename if not provided
 00034|     if args.output:
 00035|         output_file = Path(args.output)
 00036|     else:
 00037|         filename = generate_filename(url)
 00038|         output_file = output_dir / filename
-00039| 
+00039|
 00040|     print(f"Reading page: {url}")
 00041|     print(f"Output file: {output_file}")
-00042| 
+00042|
 00043|     try:
 00044|         with WebPageReader(timeout=timeout) as reader:
 00045|             reader.read_and_save(str(url), str(output_file))
@@ -463,11 +463,11 @@ Now I'll create a simple function to get the sample PDF and add it to the main m
 00047|     except WebPageReaderError as e:
 00048|         print(f"✗ Error: {e}", file=sys.stderr)
 00049|         sys.exit(1)
-00050| 
-00051| 
+00050|
+00051|
 00052| if __name__ == "__main__":
 00053|     main()
-00054| 
+00054|
 
 (End of file - total 54 lines)
 </file>
@@ -747,22 +747,22 @@ _Thinking:_
 ```
 <file>
 00001| """Web page reader client for reading URLs and saving to text files."""
-00002| 
+00002|
 00003| import os
 00004| from urllib.parse import urlparse
-00005| 
+00005|
 00006| import requests
 00007| from requests import Response
-00008| 
+00008|
 00009| from .exceptions import FileWriteError, NetworkError, WebPageReaderError
-00010| 
-00011| 
+00010|
+00011|
 00012| class WebPageReader:
 00013|     """A client for reading web pages and saving content to text files."""
-00014| 
+00014|
 00015|     def __init__(self, timeout: int = 30):
 00016|         """Initialize the web page reader.
-00017| 
+00017|
 00018|         Args:
 00019|             timeout: Request timeout in seconds.
 00020|         """
@@ -770,10 +770,10 @@ _Thinking:_
 00022|         self.session = requests.Session()
 00023|         user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 00024|         self.session.headers.update({"User-Agent": user_agent})
-00025| 
+00025|
 00026|     def read_page(self, url: str) -> str:
 00027|         """Read content from a web page.
-00028| 
+00028|
 00029|         Args:
 00030|             url: The URL to read from.
 
@@ -835,21 +835,21 @@ _Thinking:_
 00117|                 url, timeout=self.timeout, stream=True
 00118|             )
 00119|             response.raise_for_status()
-00120| 
+00120|
 00121|             # Check if content is actually a PDF
 00122|             content_type = response.headers.get("content-type", "").lower()
 00123|             if "pdf" not in content_type and not url.lower().endswith(".pdf"):
 00124|                 raise WebPageReaderError(f"URL does not appear to be a PDF: {url}")
-00125| 
+00125|
 00126|             dir_path = os.path.dirname(filepath)
 00127|             if dir_path:
 00128|                 os.makedirs(dir_path, exist_ok=True)
-00129| 
+00129|
 00130|             with open(filepath, "wb") as f:
 00131|                 for chunk in response.iter_content(chunk_size=8192):
 00132|                     if chunk:
 00133|                         f.write(chunk)
-00134| 
+00134|
 00135|         except requests.RequestException as e:
 
 (File has more lines. Use 'offset' parameter to read beyond line 135)
@@ -1073,7 +1073,7 @@ _Thinking:_
 ```
 <file>
 00151|         return self
-00152| 
+00152|
 00153|     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
 00154|         """Context manager exit."""
 00155|         self.close()
@@ -1289,4 +1289,3 @@ python main.py https://example.com/document.pdf --pdf -o output.pdf
 The functionality is now ready to use and properly integrated into the existing codebase!
 
 ---
-
