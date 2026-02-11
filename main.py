@@ -17,9 +17,15 @@ def main() -> None:
         "url", nargs="?", help="URL to read (default: https://example.com)"
     )
     parser.add_argument("-o", "--output", help="Output file path")
-    parser.add_argument("-d", "--dir", help="Output directory (default: output)")
-    parser.add_argument("-t", "--timeout", type=int, help="Request timeout in seconds")
-    parser.add_argument("--pdf", action="store_true", help="Download as PDF file")
+    parser.add_argument(
+        "-d", "--dir", help="Output directory (default: output)"
+    )
+    parser.add_argument(
+        "-t", "--timeout", type=int, help="Request timeout in seconds"
+    )
+    parser.add_argument(
+        "--pdf", action="store_true", help="Download as PDF file"
+    )
     parser.add_argument(
         "--sample-pdf",
         action="store_true",
